@@ -1,8 +1,7 @@
 import ReactDOM from 'react-dom/client';
-import { Navigate } from 'react-router-dom';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { AuthProvider, useAuth } from './context/AuthContext/AuthProvider';
+import { AuthProvider } from './context/AuthContext/AuthContext';
 import ProtectedRoute from './components/AuthComponent/ProtectedRoute';
 
 import Welcome from './pages/welcome/Welcome';
@@ -11,21 +10,20 @@ import LoginPage from './pages/login/LoginPage';
 
 const App = () => {
 
-  const { isAuthenticated } = useAuth();
-
   return (
-    <AuthProvider>
-      <Router>
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<HelloWorld />} exact />
+            <Route path="/welcome" element={<HelloWorld />} exact />
+          </Route>
           <Route path="/login" element={<LoginPage />} />
 
-          <Route path="/" element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-            <Route path="/welcome" element={<HelloWorld />} />
-          </Route>
-
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 };
 

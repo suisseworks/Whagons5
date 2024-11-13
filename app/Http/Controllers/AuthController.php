@@ -24,10 +24,12 @@ class AuthController extends Controller
         }
 
         $user = User::firstWhere('email', $request->email);
+        $token = $user->createToken($request->email)->plainTextToken;
 
         return response()->json([
             'success' => true,
-            'token' => $user->createToken($request->email)->plainTextToken
+            'token' => $token,
+            'user' => $user
         ]);
     }
 }

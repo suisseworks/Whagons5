@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext  } from '../../../context/AuthContext/AuthContext';
+
+
 
 const useLogin = () => {
+
+    const { authUser } = useContext(AuthContext);
 
     const [username, setUsername] = useState();
     const [password, setPassword] = useState('');
@@ -10,7 +15,6 @@ const useLogin = () => {
     const navigate = useNavigate();
 
     const callLoginApi = async () => {
-
 
         try {
 
@@ -27,11 +31,10 @@ const useLogin = () => {
             const data = await response.data;
 
             if (data.success) {
-                
-                navigate('/welcome');
 
-                const token = data.token;
-                localStorage.setItem('authToken', token);
+                console.log("Login correcto");
+                authUser(data);
+                navigate('/welcome');
             } else {
                 setError(data.message || "Error en el login");
             }
