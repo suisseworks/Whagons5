@@ -22,4 +22,8 @@ Route::get('/dashboard', function () {
 Route::get('/settings', function () {
     return view('settings');
 });
+
+Route::get('/userProfile', function () {
+    return view('userProfile');
+});
  

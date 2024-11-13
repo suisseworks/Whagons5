@@ -6,6 +6,7 @@ import HelloWorld from './pages/helloworld/HelloWorld';
 import Login from './pages/login/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 import SettingsDashboard from './pages/settings/appSettings/Settings';
+import UserProfile from './pages/settings/userProfile/UserProfile';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/hello" element={<HelloWorld/>} />
         <Route path="/Dashboard" element={<Dashboard/>} />
         <Route path="/settings" element={<SettingsDashboard/>} />
+        <Route path="/settings" element={<UserProfile/>} />
         {/* Add more routes here as needed */}
       </Routes>
     </Router>

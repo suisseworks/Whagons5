@@ -15,6 +15,7 @@ export default defineConfig({
     alias: {
       '@components': path.resolve(__dirname, 'resources/ts/components'),
       '@pages': path.resolve(__dirname, 'resources/ts/pages'),
+      '@layouts': path.resolve(__dirname, 'resources/ts/layouts'),
     },
   },
 });

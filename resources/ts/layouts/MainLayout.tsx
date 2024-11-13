@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+ 
+ 
 
-import { 
+import {
   ChevronDown,
   ChevronUp,
-  LayoutDashboard, 
-  Users, 
-  Settings, 
+  Check,
+  LayoutDashboard,
+  Users,
+  Settings,
   HelpCircle,
   Lock,
   Globe,
@@ -46,9 +49,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <div className="flex items-center space-x-4">
           <div className="flex items-center gap-3">
             <div className="h-8">
-              <img 
-                src="/images/logo/whagons-logo.png" 
-                alt="Whagons Logo" 
+              <img
+                src="/images/logo/whagons-logo.png"
+                alt="Whagons Logo"
                 className="h-full w-auto object-contain"
               />
             </div>
@@ -57,7 +60,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             </span>
           </div>
         </div>
-        
+
         <div className="flex items-center space-x-4">
           <span className="text-sm text-slate-600">John Doe</span>
           <Menu as="div" className="relative">
@@ -78,9 +81,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   {({ active }) => (
                     <button
                       onClick={() => navigate('/profile')}
-                      className={`${
-                        active ? 'bg-gray-100' : ''
-                      } flex items-center w-full px-4 py-2 text-sm text-gray-700`}
+                      className={`${active ? 'bg-gray-100' : ''
+                        } flex items-center w-full px-4 py-2 text-sm text-gray-700`}
                     >
                       <User className="mr-2 h-4 w-4" />
                       Profile
@@ -91,9 +93,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   {({ active }) => (
                     <button
                       onClick={() => navigate('/help')}
-                      className={`${
-                        active ? 'bg-gray-100' : ''
-                      } flex items-center w-full px-4 py-2 text-sm text-gray-700`}
+                      className={`${active ? 'bg-gray-100' : ''
+                        } flex items-center w-full px-4 py-2 text-sm text-gray-700`}
                     >
                       <HelpCircle className="mr-2 h-4 w-4" />
                       Help
@@ -105,9 +106,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   {({ active }) => (
                     <button
                       onClick={() => console.log('Sign out clicked')}
-                      className={`${
-                        active ? 'bg-gray-100' : ''
-                      } flex items-center w-full px-4 py-2 text-sm text-red-600`}
+                      className={`${active ? 'bg-gray-100' : ''
+                        } flex items-center w-full px-4 py-2 text-sm text-red-600`}
                     >
                       <LogOut className="mr-2 h-4 w-4" />
                       Sign out
@@ -121,18 +121,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       </header>
 
       {/* Rest of the component remains exactly the same */}
-      <aside 
+      <aside
         className={`fixed left-0 top-20 bottom-16 bg-slate-900 transition-all duration-300 flex flex-col
                    ${isExpanded ? 'w-72' : 'w-20'}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <button 
+        <button
           onClick={() => setIsPinned(!isPinned)}
           className={`absolute right-4 top-4 p-2 rounded-full transition-all duration-300
-                     ${isPinned 
-                       ? 'bg-indigo-500 text-white' 
-                       : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                     ${isPinned
+              ? 'bg-indigo-500 text-white'
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
         >
           <Pin size={16} className={isPinned ? 'rotate-45' : ''} />
         </button>
@@ -150,12 +150,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                     <button className="p-1.5 hover:bg-slate-800 rounded-full text-slate-400 hover:text-slate-200 transition-colors">
                       <Plus size={16} />
                     </button>
-                    <button 
+                    <button
                       onClick={() => setIsDashboardsExpanded(!isDashboardsExpanded)}
                       className="p-1.5 hover:bg-slate-800 rounded-full text-slate-400 hover:text-slate-200 transition-colors"
                     >
-                      {isDashboardsExpanded ? 
-                        <ChevronUp size={16} /> : 
+                      {isDashboardsExpanded ?
+                        <ChevronUp size={16} /> :
                         <ChevronDown size={16} />
                       }
                     </button>
@@ -166,13 +166,13 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               {isDashboardsExpanded && (
                 <div className="ml-8 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
                   {dashboards.map((dashboard, index) => (
-                    <div 
+                    <div
                       key={index}
                       onClick={() => navigate(dashboard.route)}
                       className="flex items-center py-2 px-4 text-sm text-slate-400 hover:text-slate-200 hover:bg-slate-800 cursor-pointer rounded-lg mx-2 transition-colors duration-200"
                     >
-                      {dashboard.isPrivate ? 
-                        <Lock size={14} className="text-slate-500 mr-2" /> : 
+                      {dashboard.isPrivate ?
+                        <Lock size={14} className="text-slate-500 mr-2" /> :
                         <Globe size={14} className="text-slate-500 mr-2" />
                       }
                       <span className="truncate">{dashboard.label}</span>
@@ -184,8 +184,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           )}
 
           {mainMenuItems.map((item, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="flex items-center px-6 py-3 text-slate-400 hover:text-slate-200 hover:bg-slate-800 cursor-pointer transition-colors duration-200"
             >
               <item.icon size={20} className="text-indigo-400" />
@@ -197,11 +197,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         </nav>
 
         <div className="px-6 py-3 text-slate-400 hover:text-slate-200 hover:bg-slate-800 cursor-pointer flex items-center transition-colors duration-200"
-         onClick={() => navigate('/settings')}
+          onClick={() => navigate('/settings')}
         >
           <Settings size={20} className="text-indigo-400" />
           {isExpanded && <span className="ml-4">Settings</span>}
-         
+
         </div>
 
         <div className="mt-auto mb-4 px-6 py-3 text-slate-400 hover:text-slate-200 hover:bg-slate-800 cursor-pointer flex items-center transition-colors duration-200">
@@ -216,9 +216,23 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         </div>
       </main>
 
-      <footer className="fixed bottom-0 left-0 right-0 h-16 bg-white shadow-sm flex items-center justify-center text-sm text-slate-600">
-        <p>© 2024 Whagons 5. All rights reserved.</p>
+      
+      <footer className="fixed bottom-0 left-0 right-0 h-16 bg-white shadow-sm flex items-center justify-between px-6">
+        <div className="flex items-center space-x-4">
+          <span className="text-sm text-slate-600">© 2024 Whagons 5</span>
+          <span className="text-sm text-slate-600">Live</span>
+          <span className="text-sm text-slate-600">Processing</span>
+          <div className="flex items-center gap-1">
+            <Check size={12} className="text-green-500" />
+            <span className="text-sm text-green-600">All systems normal</span>
+          </div>
+        </div>
+
+        <div>
+          <span className="text-sm text-slate-600">v1.0.0</span>
+        </div>
       </footer>
+
     </div>
   );
 };
